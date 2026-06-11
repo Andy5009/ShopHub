@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+{% block content %}
+<h3>Hello, my name is {{name}}</h3>
+<p>My courses</p>
+{% for course in courses %}
+    {{course}}
+{% endfor %}
+
+{% if age > 21 %}
+    <p>Old enough to vote</p>
+{% endif %}
+{% endblock %}

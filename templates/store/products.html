@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+
+{% block title %}Products | ShopHub{% endblock %}
+
+{% block content %}
+
+<section class="bg-white py-5 border-bottom">
+    <div class="container">
+
+        <h1 class="fw-bold display-5">
+            Our Products
+        </h1>
+
+        <p class="text-muted">
+            Browse our latest collection.
+        </p>
+
+    </div>
+</section>
+
+<div class="container py-5">
+
+    <div class="row">
+
+        <!-- FILTER SIDEBAR -->
+
+        <div class="col-lg-3 mb-4">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body">
+
+                    <h5 class="fw-bold mb-3">
+                        Categories
+                    </h5>
+
+                    <div class="list-group list-group-flush">
+
+                        <a href="#" class="list-group-item list-group-item-action">
+                            All Products
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action">
+                            Electronics
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action">
+                            Fashion
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action">
+                            Home & Living
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action">
+                            Sports
+                        </a>
+
+                    </div>
+
+                    <hr>
+
+                    <h5 class="fw-bold mb-3">
+                        Price Range
+                    </h5>
+
+                    <input
+                        type="range"
+                        class="form-range"
+                        min="0"
+                        max="1000">
+
+                    <div class="d-flex justify-content-between">
+                        <small>$0</small>
+                        <small>$1000</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCTS AREA -->
+
+        <div class="col-lg-9">
+
+            <!-- SEARCH -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body">
+
+                    <form method="GET">
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-search"></i>
+                            </span>
+
+                            <input
+                                type="text"
+                                name="search"
+                                class="form-control"
+                                placeholder="Search products...">
+
+                            <button
+                                class="btn btn-primary">
+
+                                Search
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <!-- PRODUCT GRID -->
+
+            <div class="row g-4">
+
+                {% for product in products %}
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="card h-100 border-0 shadow-sm product-card">
+
+                        <img
+                            src="{{ product.image }}"
+                            class="card-img-top product-image"
+                            alt="{{ product.name }}">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-light text-dark mb-2">
+                                {{ product.category }}
+                            </span>
+
+                            <h5 class="card-title">
+                                {{ product.name }}
+                            </h5>
+
+                            <p class="text-muted small">
+                                {{ product.description[:80] }}...
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <h5 class="text-primary fw-bold mb-0">
+                                    ${{ product.price }}
+                                </h5>
+
+                                <span class="text-warning">
+                                    ★★★★☆
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card-footer bg-white border-0">
+
+                            <div class="d-grid gap-2">
+
+                                <a
+                                   href="{{ url_for('product_detail', product_id=product.id) }}"
+                                   class="btn btn-outline-primary">
+
+                                   View Product
+
+                                </a>
+
+                                <button class="btn btn-primary">
+
+                                    <i class="bi bi-cart-plus"></i>
+
+                                    Add To Cart
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            <!-- PAGINATION -->
+
+            <nav class="mt-5">
+
+                <ul class="pagination justify-content-center">
+
+                    <li class="page-item disabled">
+                        <a class="page-link">
+                            Previous
+                        </a>
+                    </li>
+
+                    <li class="page-item active">
+                        <a class="page-link">
+                            1
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a class="page-link">
+                            2
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a class="page-link">
+                            3
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a class="page-link">
+                            Next
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

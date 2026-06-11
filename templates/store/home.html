@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+{% block content %}
+<section class="hero">
+
+<div class="container">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<span class="badge bg-primary mb-3">
+New Collection
+</span>
+
+<h1 class="display-4 fw-bold">
+Shop Smarter,
+Live Better
+</h1>
+
+<p class="lead text-secondary">
+Discover amazing products with unbeatable prices.
+</p>
+
+<a href="{{ url_for('products') }}"
+   class="btn btn-primary btn-lg">
+    <i class="bi bi-bag"></i>
+    Shop Now
+</a>
+
+</div>
+
+<div class="col-lg-6 text-center">
+
+<img src="{{ url_for('static',
+filename='images/hero.jpg') }}"
+class="img-fluid">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+{% endblock %}
