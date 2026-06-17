@@ -25,9 +25,6 @@ class User(db.Model):
 
 
     
-    
-       
-
 # 2. Define route to home page
 @app.route("/")
 def home():
