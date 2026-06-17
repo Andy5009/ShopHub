@@ -1,7 +1,32 @@
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+
 
 # 1. Initialize our flask application
 app = Flask(__name__)
+
+# Configure SQLite database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ecommerce.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Avoids a warning
+
+# Create SQLAlchemy instance
+db = SQLAlchemy(app)
+
+# create user model
+class User(db.Model):
+        __tablename__ = "users"
+
+        id = db.Column(db.Integer, primary_key=True)
+        name = db.Column(db.String(255), nullable=False)
+
+        def __str__(self):
+          return f"<User:id={self.id}, name={self.name}>"      
+
+
+
+    
+    
+       
 
 # 2. Define route to home page
 @app.route("/")
